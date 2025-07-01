@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "name": "project_timeblocks_spike-devcontainer",
+  "version": "0.0.1",
+  "devDependencies": {
+    "@devcontainers/cli": "^0.78.0"
+  }
+}
