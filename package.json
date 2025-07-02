@@ -1,5 +1,8 @@
 {
   "private": true,
   "name": "project_timeblocks_spike-devcontainer",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node index.js"
+  }
 }
