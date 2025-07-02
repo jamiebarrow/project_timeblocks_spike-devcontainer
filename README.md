@@ -10,7 +10,7 @@ This repository contains a spike to try out devcontainers in order to have a con
 
 I first did some preparation steps.
 
-First, we will be using Podman for our containers, and on Windows we need to first install Windows Subsystem for Linux version 2 (WSL2).
+First, we will be using containers, and on Windows we need to first install Windows Subsystem for Linux version 2 (WSL2).
 This should be simple enough to do these days with the below command:
 
 ```shell
@@ -26,44 +26,24 @@ $ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nor
 ```
 
  Alternatively, instead of running the above command, you can also reach it from
- Control Panel > Programs > Programs and Features > Turn Windows features on or off.
+ `Control Panel > Programs > Programs and Features > Turn Windows features on or off`.
  Note that only the Virtual Machine Platform feature needs enabling, and NOT Windows Subsystem for Linux (which installs WSL1 and not WSL2).
 
 Before continuing, I recommend to restart your computer, to ensure all features are fully installed and activated.
 
-You should now be ready to install Podman Desktop:
+Open this repository inside Visual Studio Code.
+The Microsoft Dev Containers extension should be installed in VS Code (I've added it as a workspace recommendation).
 
-```shell
-$ winget install --id RedHat.Podman-Desktop
-```
+Either you should be prompted to open the workspace in a container, or you can click on the button in the bottom left corner of VS Code
+which comes from the Dev Containers / Remote Containers extension, which should give an option to reopen the workspace in a container.
 
-Once you launch Podman Desktop, you'll be guided through the onboarding instructions to install Podman and create a Podman Virtual Machine.
-After all these steps are done, you should be able to run the podman command in a command line:
+Without Docker installed, it will attempt to install Docker in WSL - which we want, since Docker Desktop would require a license,
+and while that's usually the easiest way to get started with Docker, its not always possible to use that in a professional environment without a license.
 
-```shell
-$ podman ps
-```
-
-If you get the below error, it means you either haven't yet created the podman machine, or it needs to be started.
-
-```shell
-$ podman ps
-Cannot connect to Podman. Please verify your connection to the Linux system using `podman system connection list`, or try `podman machine init` and `podman machine start` to manage a new Linux VM
-Error: unable to connect to Podman socket: failed to connect: dial tcp 127.0.0.1:50465: connectex: No connection could be made because the target machine actively refused it.
-```
-
-You can start an existing podman machine using the below:
-
-```shell
-$ podman machine start
-Starting machine "podman-machine-default"
-API forwarding listening on: npipe:////./pipe/docker_engine
-
-Docker API clients default to this address. You do not need to set DOCKER_HOST.
-Machine "podman-machine-default" started successfully
-```
-
-Finally, the Microsoft Dev Containers extension is installed in VS Code (I've added it as a workspace recommendation).
+Visual Studio should relaunch its window and try to connect to the container (could take a while).
+I got an error initially, and I believe it is because for some reason the default WSL container stopped at some point while trying this step out.
+However, a retry seemed to solve the issue.
+The workspace should reload and be connected to the running container!
 
 ## References
 
